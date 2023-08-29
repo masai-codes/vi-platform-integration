@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AssessmentDetails = () => {
   const { id } = useParams();
@@ -10,6 +10,7 @@ const AssessmentDetails = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const getAssessmentById = async () => {
     try {
@@ -124,11 +125,12 @@ const AssessmentDetails = () => {
                   <div>{el?.email}</div>
                   <button
                     disabled={el?.status === "done"}
-                    onClick={() =>
-                      window.open(
-                        `${process.env.REACT_APP_VI_PLATFORM_URL}/virtual-interview-template/assessment-interview/${id}/${el._id}`
-                      )
-                    }
+                    onClick={() => {
+                      navigate(`/assessments/${id}/${el._id}`);
+                      // window.open(
+                      //   `${process.env.REACT_APP_VI_PLATFORM_URL}/virtual-interview-template/assessment-interview/${id}/${el._id}`
+                      // )
+                    }}
                   >
                     {el?.status === "done" ? "Done" : "Start Interview"}
                   </button>
