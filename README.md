@@ -1,6 +1,6 @@
 # Integrate your Web Applicatication with Ai.Mas platform
 
-## Terminology
+#### Terminology
 
 - `VI_API_URL`: Server endpoint of VI Platform
 
