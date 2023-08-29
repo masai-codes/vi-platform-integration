@@ -9,16 +9,16 @@
        "title": "Test2 ",
        "questions": [
            "64eba3e0b35d051ab7ad358d"
-       ],
+       ], //Hardcoded
        "intro_message": "Hi , I am Gautam, working at masai in tech team",
        "interviewer_name": "Gautam",
-       "voice_code": "en-US-GuyNeural",
+       "voice_code": "en-US-GuyNeural", //Hardcoded
        "redirect_url": "masaischool.com",
        "schedule_start_time": "2023-08-28T01:25",
        "schedule_end_time": "2023-08-28T03:28",
        "max_duration_minutes": "10",
-       "lock_assessment_after_end_time": false,
-       "model": "gpt-3.5-turbo"
+       "lock_assessment_after_end_time": false, //Hardcoded
+       "model": "gpt-3.5-turbo" //Hardcoded
    }
    ```
 
@@ -46,3 +46,19 @@
 4. Get stats => /organisations/stats works fine
 5. Create Assessment => http://localhost:3030/virtual-interview-template/assessments/create => works fine
 6. Add user => http://localhost:3030/vi-assessment/submission/create => works fine
+7. GetAssessmentById => '/virtual-interview-template/assessments/:id
+8. GetAllSubmissions of user under Assessment => `/vi-assessment/submissions/?asssessment_id=${id}`
+9. Create Submission / User => `/vi-assessment/submission/create` =>
+
+- Body
+
+```js
+
+{
+"assessment_id": "64eba424b35d051ab7ad3596",
+"email": "test@gmail.com",
+"code": "123",
+"meta": "{}", //JSON Stringify
+"variables": []
+}
+```
