@@ -24,7 +24,6 @@ const AssessmentDetails = () => {
   const getUsers = async () => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/assessments/submissions/${id}`);
-      console.log(data?.submissions);
       setSubmissions(data?.submissions);
     } catch (err) {
       console.log(err);
