@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ViewAssessment = () => {
+  const navigate = useNavigate();
   const { id, submissionId } = useParams();
+
+  if (!id || !submissionId) {
+    navigate("/assessments");
+  }
 
   return (
     <>

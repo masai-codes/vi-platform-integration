@@ -2,10 +2,47 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+export type Question = {
+  id: number;
+  text: string;
+};
+export interface IAllQuestionsProps {
+  _id?: string;
+  title: string;
+  question_type: string;
+  questions: Question[];
+  prompt: string;
+  generated_prompt?: string;
+  variables?: {
+    key: string;
+    value?: string;
+    _id: string;
+  }[];
+}
+
+export interface IAssessmentTypes {
+  _id: string;
+  title: string;
+  questions: IAllQuestionsProps[];
+  intro_message: string;
+  interviewer_name: string;
+  voice_code: string;
+  redirect_url?: string;
+  created_by?: string;
+  schedule_start_time: string;
+  schedule_end_time: string;
+}
+
+interface ISubmissionTypes {
+  email: string;
+  status: string;
+  _id: string;
+}
+
 const AssessmentDetails = () => {
   const { id } = useParams();
-  const [data, setData] = useState<any>();
-  const [submissions, setSubmissions] = useState<any>([]);
+  const [data, setData] = useState<IAssessmentTypes>();
+  const [submissions, setSubmissions] = useState<ISubmissionTypes[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -113,7 +150,7 @@ const AssessmentDetails = () => {
             }}
           >
             {" "}
-            {submissions?.map((el: any) => {
+            {submissions?.map((el) => {
               return (
                 <div
                   style={{
@@ -121,14 +158,11 @@ const AssessmentDetails = () => {
                     gap: "20px",
                   }}
                 >
-                  <div>{el?.email}</div>
+                  <div>{el.email}</div>
                   <button
-                    disabled={el?.status === "done"}
+                    disabled={el.status === "done"}
                     onClick={() => {
                       navigate(`/assessments/${id}/${el._id}`);
-                      // window.open(
-                      //   `${process.env.REACT_APP_VI_PLATFORM_URL}/virtual-interview-template/assessment-interview/${id}/${el._id}`
-                      // )
                     }}
                   >
                     {el?.status === "done" ? "Done" : "Start Interview"}

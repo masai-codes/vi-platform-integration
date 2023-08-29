@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IAssessmentTypes } from "./AssessmentDetails";
 
 const AllAssessments = () => {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<IAssessmentTypes[]>([]);
   const navigate = useNavigate();
 
   const getAllAssessments = async () => {
@@ -29,7 +30,7 @@ const AllAssessments = () => {
         }}
       >
         <h2>Asssesment List</h2>
-        {data?.map((el: any) => {
+        {data?.map((el) => {
           return (
             <div
               style={{
