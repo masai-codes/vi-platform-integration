@@ -29,6 +29,7 @@ app.post("/assessments/create", async (req, res) => {
     testData.voice_code = "en-US-GuyNeural";
     testData.lock_assessment_after_end_time = false;
     testData.model = "gpt-3.5-turbo";
+    testData.webhooks = ["64eba5eab35d051ab7ad35b1"];
     const { data } = await axios.post(
       `${process.env.VI_API_URL}/virtual-interview-template/assessments/create`,
       testData,
@@ -99,7 +100,7 @@ app.get("/assessments/submissions/:id", async (req, res) => {
 app.post(`/webhook/callback`, (req, res) => {
   try {
     console.log(req.body, "Recieved data in webhook");
-    res.status(200).json(req.body);
+    res.status(200).json("ok");
   } catch (err) {
     console.log(err);
   }
