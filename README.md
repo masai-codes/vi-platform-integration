@@ -149,12 +149,39 @@
 - `code` : Unique code.
 - `assessment_id` : Id of the Assessment.
 - `meta` : Addition details of the user.
-  ```js
+- `variables` : If the assessment includes questions with variables in their prompts, these variables and their corresponding values must be included in this part of the request.
+
+  #### Instructions for Handling Variables:
+  
+  1. `Gather Variable Information`: Retrieve all the variables from the response of the `Get Assessment By Id API`. You can locate these variables under `assessments.questions.variables`.
+     
+  2. `Add Variable Details`: For each variable, add the following details to the variables array:
+     
+      - `key`: The name of the variable.
+      - `id`: The ID of the variable.
+      - `value`: The value of the variable for the user.
+        
+  #### Example Variable Inclusion:
+
+    - Suppose the assessment question includes two variables:
+      
+        1. `interviewer_name`: The value for this variable is obtained during the assessment creation and doesn't need to be included in the request.
+           
+        2. `role` : role of the user
+           
+    - To include the `role` variable, use the following format in the request body's variables array:
+      
+      
+```js
        {
         "assessment_id": "ASSESSMENT_ID",
         "code": "EXAMPLE_123",
         "email": "example@gmail.com",
         "meta": "{}",
-        "variables": []
+        "variables": [{
+                "key": "role",
+                "id": "id",
+                "value": "student"
+              }]
        }
-  ```
+```
