@@ -22,7 +22,7 @@
 
 3. install dependencies
 
-    - Do run following command to install dependencies for client and server side, Ensure you are running below command inside the respective diroctory.
+    - Do run following command to install dependencies for client and server side, Ensure you are running below command inside the respective directory.
 
         ```bash
         npm install
