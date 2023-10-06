@@ -30,6 +30,7 @@ app.post("/assessments/create", async (req, res) => {
     testData.lock_assessment_after_end_time = false;
     testData.model = "gpt-3.5-turbo";
     testData.webhooks = ["64eba5eab35d051ab7ad35b1"];
+    testData.tags = [{ tag_name: "react" }];
     const { data } = await axios.post(
       `${process.env.VI_API_URL}/virtual-interview-template/assessments/create`,
       testData,
