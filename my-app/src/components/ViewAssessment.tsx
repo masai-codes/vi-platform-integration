@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ViewAssessment = () => {
@@ -8,6 +9,23 @@ const ViewAssessment = () => {
     navigate("/assessments");
   }
 
+  useEffect(() => {
+    const handleEvent = (event: MessageEvent) => {
+      // You will receive this event when the assessment is ended
+      //  {
+      //     type: 'assessment-ended',
+      //     hasEnded: true,
+      //  }
+      console.log(event.data, "Event triggered");
+    };
+
+    window?.addEventListener("message", handleEvent);
+
+    // Make sure to clean up event listeners to avoid memory leaks
+    return () => {
+      window?.removeEventListener("message", handleEvent);
+    };
+  }, []);
   return (
     <>
       <iframe

@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
-  origin: "http://localhost:5000",
+  origin: process.env.CORS_ALLOWED_ORIGINS?.split(","),
 };
 app.use(cors(corsOptions));
 
@@ -30,6 +30,7 @@ app.post("/assessments/create", async (req, res) => {
     testData.lock_assessment_after_end_time = false;
     testData.model = "gpt-3.5-turbo";
     testData.webhooks = ["64eba5eab35d051ab7ad35b1"];
+    testData.tags = [{ tag_name: "react" }];
     const { data } = await axios.post(
       `${process.env.VI_API_URL}/virtual-interview-template/assessments/create`,
       testData,

@@ -10,7 +10,7 @@ const AllAssessments = () => {
   const getAllAssessments = async () => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/assessments`);
-      setData(data);
+      setData(data.assessments);
     } catch (err) {
       console.log(err);
     }
